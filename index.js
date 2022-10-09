@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
 const generateHTML = require('./src/generateHTML');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
 
 // TODO: Create an array of questions for user input
 const employee_questions = [
@@ -13,7 +16,7 @@ const employee_questions = [
   },
   {
     type: 'input',
-    name: 'employeeID',
+    name: 'id',
     message: 'Employee ID: ',
   },
   {
@@ -35,7 +38,7 @@ const manager_questions = [
 const engineer_questions = [
   {
     type: 'input',
-    name: 'githubUserName',
+    name: 'github',
     message: 'Github Username: ',
   }
 ];
@@ -51,7 +54,7 @@ const intern_questions = [
 const menu_questions = [
   {
     type: 'list',
-    name: 'Menu',
+    name: 'menu',
     message: 'Select an option: ',
     choices: ['1. Add an engineer', '2. Add an intern', '3. Finish'],
   }, 
@@ -63,20 +66,56 @@ function writeToFile(fileName, data) {
   return fs.writeFileSync(path.join(__dirname, 'generatedREADME', fileName), data);
 }
 
-// TODO: Create a function to initialize app
-function init() {
-  // Ask  manager questions
-  // Menu with 1. Add engineer, 2. Add Intern, 3. Finish
-  // Based on user selection, ask corresponding questions
-  inquirer
+const getUserInputs = async (questions) => {
+  return await inquirer
     .prompt(questions)
     .then((userAnswers) => {
-    console.log('Generating the HTML file...');
-    writeToFile('index.html', generateHTML({ ...userAnswers }));
+      return userAnswers;
     })
     .catch( err => {
       console.log(err);
     });
+}
+
+// TODO: Create a function to initialize app
+const init = async () => {
+  let engineers = []
+  let interns = []
+  // Ask  manager questions
+  response = await getUserInputs(employee_questions)
+  console.log(response);
+  managerResponse = await getUserInputs(manager_questions)
+  // Init manager
+  const manager = new Manager(response.name, response.id, response.email, managerResponse.officeNumber)
+
+  while(1) {
+    // Menu with 1. Add engineer, 2. Add Intern, 3. Finish
+    response = await getUserInputs(menu_questions)
+  
+    // Based on user selection, ask corresponding questions
+    if (response.menu === "1. Add an engineer") {
+      response = await getUserInputs(employee_questions)
+      engineerResponse = await getUserInputs(engineer_questions)
+      // Init engineer
+      const engineer = new Engineer(response.name, response.id, response.email, engineerResponse.github)
+      engineers.push(engineer)
+    } else if (response.menu === "2. Add an intern") {
+      response = await getUserInputs(employee_questions)
+      internResponse = await getUserInputs(intern_questions)
+      // Init intern
+      const intern = new Intern(response.name, response.id, response.email, internResponse.school)
+      interns.push(intern)
+    } else {
+      break
+    }
+  }
+  console.log(manager);
+  console.log(engineers);
+  console.log(interns);
+
+  // Generate HTML
+  // console.log('Generating the HTML file...');
+  // writeToFile('index.html', generateHTML(manager, engineers, interns));
 }
 
 // Function call to initialize app
