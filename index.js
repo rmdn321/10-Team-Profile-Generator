@@ -81,34 +81,44 @@ const getUserInputs = async (questions) => {
 const init = async () => {
   let engineers = []
   let interns = []
-  // Ask  manager questions
-  response = await getUserInputs(employee_questions)
-  console.log(response);
-  managerResponse = await getUserInputs(manager_questions)
-  // Init manager
-  const manager = new Manager(response.name, response.id, response.email, managerResponse.officeNumber)
+  // // Ask  manager questions
+  // response = await getUserInputs(employee_questions)
+  // // console.log(response);
+  // managerResponse = await getUserInputs(manager_questions)
+  // // Init manager
+  // const manager = new Manager(response.name, response.id, response.email, managerResponse.officeNumber)
 
-  while(1) {
-    // Menu with 1. Add engineer, 2. Add Intern, 3. Finish
-    response = await getUserInputs(menu_questions)
+  // while(1) {
+  //   // Menu with 1. Add engineer, 2. Add Intern, 3. Finish
+  //   response = await getUserInputs(menu_questions)
   
-    // Based on user selection, ask corresponding questions
-    if (response.menu === "1. Add an engineer") {
-      response = await getUserInputs(employee_questions)
-      engineerResponse = await getUserInputs(engineer_questions)
-      // Init engineer
-      const engineer = new Engineer(response.name, response.id, response.email, engineerResponse.github)
-      engineers.push(engineer)
-    } else if (response.menu === "2. Add an intern") {
-      response = await getUserInputs(employee_questions)
-      internResponse = await getUserInputs(intern_questions)
-      // Init intern
-      const intern = new Intern(response.name, response.id, response.email, internResponse.school)
-      interns.push(intern)
-    } else {
-      break
-    }
-  }
+  //   // Based on user selection, ask corresponding questions
+  //   if (response.menu === "1. Add an engineer") {
+  //     response = await getUserInputs(employee_questions)
+  //     engineerResponse = await getUserInputs(engineer_questions)
+  //     // Init engineer
+  //     const engineer = new Engineer(response.name, response.id, response.email, engineerResponse.github)
+  //     engineers.push(engineer)
+  //   } else if (response.menu === "2. Add an intern") {
+  //     response = await getUserInputs(employee_questions)
+  //     internResponse = await getUserInputs(intern_questions)
+  //     // Init intern
+  //     const intern = new Intern(response.name, response.id, response.email, internResponse.school)
+  //     interns.push(intern)
+  //   } else {
+  //     console.log("Thank you for answering. Building your team now!");
+  //     break
+  //   }
+  // }
+
+  //////////////////////////
+  // SEED
+  //////////////////////////
+  manager = new Manager('m', 'm', 'm', 'm',);
+  employee1 = new Engineer();
+  employee2 = new Engineer();
+  engineers.push()
+
   console.log(manager);
   console.log(engineers);
   console.log(interns);

@@ -1,5 +1,5 @@
 function generateHTML(manager, engineers, interns) {
-
+  let x = `<h1>My Team</h1>`
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -10,7 +10,7 @@ function generateHTML(manager, engineers, interns) {
     <title>My Team</title>
   </head>
   <body>
-    <h1>My Team</h1>
+    ${x}
     Manager:
     Name: ${manager.name}
     Email: ${manager.email}
