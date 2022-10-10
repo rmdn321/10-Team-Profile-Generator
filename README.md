@@ -54,12 +54,12 @@ THEN I exit the application, and the HTML is generated
 ```
 
 ### Video
-[Demo Video]()
+[Demo Video](https://drive.google.com/file/d/1Ql83rAEwKBXLXAbC2Ba3zQTB03DQhS5H/view?usp=sharing)
 
 ### Links
 
 - [Github Repository](https://github.com/rmdn321/10-Team-Profile-Generator)
-HTML File
+- [index.html file](https://github.com/rmdn321/10-Team-Profile-Generator/blob/master/index.html)
 
 ## My process
 
