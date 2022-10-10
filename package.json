@@ -1,6 +1,27 @@
 {
+  "name": "10-team-profile-generator",
+  "version": "1.0.0",
+  "description": "## Table of contents",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmdn321/10-Team-Profile-Generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmdn321/10-Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/rmdn321/10-Team-Profile-Generator#readme",
   "dependencies": {
     "inquirer": "^8.2.4",
-    "jest": "^29.0.1"
+    "jest": "^29.1.2"
   }
 }
